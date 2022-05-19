@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, flash
-from db import db_init
-from controllers.display import get_images_from_tag, get_similar_images
-from controllers.upload import upload_images
+from .db import db_init
+from .controllers.display import get_images_from_tag, get_similar_images
+from .controllers.upload import upload_images
 import base64
 
 app = Flask(__name__)

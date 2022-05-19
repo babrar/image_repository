@@ -1,5 +1,6 @@
-from db import db
+from ..db import db
 from .relationship import image_tags
+
 
 class Tag(db.Model):
     __tablename__ = "tags"

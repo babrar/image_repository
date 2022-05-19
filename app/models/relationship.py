@@ -1,6 +1,6 @@
-from db import db
+from ..db import db
 
-# Represents a junction table to represent the 
+# Represents a junction table to represent the
 # many-to-many relationship between image and tags
 image_tags = db.Table(
     "image_tags",

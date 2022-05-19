@@ -1,12 +1,12 @@
-from db import db
-from models.image import Img
-from models.tag import Tag
-from models.relationship import image_tags
+from ..db import db
+from ..models.image import Img
+from ..models.tag import Tag
 from .utils import hamming_distance
 from .utils import image_hash
 
 # distances lesser than threshold indicates similarity between two images
 SIMILARITY_DISTANCE_THRESHOLD = 50
+
 
 def get_images_from_tag(tag):
     """Return images that have the given tag.
@@ -42,8 +42,9 @@ def get_similar_images(image):
     all_imgs = Img.query.all()
     result = []
     for img in all_imgs:
-        if hamming_distance(img.img_hash, given_img_hash) < SIMILARITY_DISTANCE_THRESHOLD:
+        if (
+            hamming_distance(img.img_hash, given_img_hash)
+            < SIMILARITY_DISTANCE_THRESHOLD
+        ):
             result.append(img.img)
     return result
-
-

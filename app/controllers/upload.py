@@ -1,7 +1,7 @@
 from werkzeug.utils import secure_filename
-from db import db
-from models.image import Img
-from models.tag import Tag
+from ..db import db
+from ..models.image import Img
+from ..models.tag import Tag
 from .utils import image_hash, tokenize, remove_empty_tags
 
 
