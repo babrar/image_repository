@@ -2,7 +2,7 @@ from werkzeug.utils import secure_filename
 from ..db import db
 from ..models.image import Img
 from ..models.tag import Tag
-from .utils import image_hash, tokenize, remove_empty_tags
+from .utils import image_hash, tokenize, format_tags
 
 
 def upload_images(pic, tags):
@@ -55,7 +55,7 @@ def _upload_tags(image, tags):
         raise exception on failure
     """
     # remove empty strings from tag list
-    tags = remove_empty_tags(tags)
+    tags = format_tags(tags)
     for tag in tags:
         # if tag already exists, simply update the relationship table
         t = db.session.query(Tag).filter_by(name=tag).first()

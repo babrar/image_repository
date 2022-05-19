@@ -15,6 +15,7 @@ def get_images_from_tag(tag):
     Return:
         list[Img] - images that match the tag
     """
+    tag = tag.lower()
     t = Tag.query.filter_by(name=tag).first()
     if t is None:
         return []

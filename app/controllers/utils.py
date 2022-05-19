@@ -38,8 +38,9 @@ def tokenize(s):
     return res.split(" ")
 
 
-def remove_empty_tags(tag_list):
-    return [t for t in tag_list if t]
+def format_tags(tag_list):
+    """Remove empty tags and lowercase all tags"""
+    return [t.lower() for t in tag_list if t]
 
 
 def hamming_distance(x, y):
