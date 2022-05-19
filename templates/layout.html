@@ -9,16 +9,24 @@
 </head>
 
 <style>
+    img {
+    width: 200px; /* You can set the dimensions to whatever you want */
+    height: 200px;
+    padding-bottom: 1em;
+    object-fit: cover;
+}
 </style>
 
 <body>
-    <div id="top">
-        <a style="float: left"><a href=home><button type="button" class="btn btn-secondary btn-lg">Return
-                    Home</button></a></a>
+    <div class="container">
+        <div id="top">
+            <a style="float: left"><a href=home><button type="button" class="btn btn-secondary btn-lg">Return
+                        Home</button></a></a>
+        </div>
+        <h1 style="text-align:center;padding-bottom:1em;">Image Repository</h1>
+    
+        {% block content %}{% endblock %}
     </div>
-    <h1 style="text-align:center;padding-bottom:1em;">Image Repository</h1>
-
-    {% block content %}{% endblock %}
 
 
 </body>

@@ -1,31 +1,8 @@
-import re
 from werkzeug.utils import secure_filename
 from db import db
-from models.image import Img, Tag
-import io
-from PIL import Image
-import imagehash
-
-
-def image_hash(image):
-    img = Image.open(io.BytesIO(image))
-    img_hash = imagehash.whash(img)
-    # convert from hex string to int
-    return int(str(img_hash), 16)
-
-
-def tokenize(s):
-    """Remove punctuations and tokenize the given string into words
-    Param:
-        s - str - string to tokenize
-    Return:
-        list[str] - tokenized list of words
-    """
-    # transform _ and - to whitespace since they usually delimit two separate words
-    res = s.replace("-", " ").replace("_", " ")
-    # remove any punctuation marks
-    res = re.sub("[^\w\s]", "", res)
-    return res.split(" ")
+from models.image import Img
+from models.tag import Tag
+from .utils import image_hash, tokenize, remove_empty_tags
 
 
 def upload_images(pic, tags):
@@ -78,7 +55,7 @@ def _upload_tags(image, tags):
         raise exception on failure
     """
     # remove empty strings from tag list
-    tags = [t for t in tags if t]
+    tags = remove_empty_tags(tags)
     for tag in tags:
         # if tag already exists, simply update the relationship table
         t = db.session.query(Tag).filter_by(name=tag).first()

@@ -2,26 +2,25 @@
 
 {% block content %}
 <h2 style="text-align:center;padding-bottom:1em;"> Upload ⬆️ </h2>
-<div class="container">
-    <div class="row-1">
-        <form action="/upload" enctype="multipart/form-data" method="post">
-            <div class="form-group">
-                <label for="uploadFile">Upload your image:</label>
-                <input type="file" class="form-control" id="customFile" name="pic" />
-                <label for="uploadTags">Tags:</label>
-                <input type="text" class="form-control" id="inputTags" name="inputTags" aria-describedby="tagsHelp"
-                    placeholder="Enter tags for the image (i.e. buildings,structures)">
-                <small id="tagsHelp" class="form-text text-muted">To enter multiple tags, separate each tag by
-                    ','</small>
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </div>
-        </form>
-    </div>
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert"></button>
-        {{ message }}
-    </div>
-    {% endfor %}
+<div class="row-1">
+    <form action="/upload" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <label for="uploadFile">Upload your image:</label>
+            <input type="file" class="form-control" id="customFile" name="pic" />
+            <label for="uploadTags">Tags:</label>
+            <input type="text" class="form-control" id="inputTags" name="inputTags" aria-describedby="tagsHelp"
+                placeholder="Enter tags for the image (i.e. buildings,structures)">
+            <small id="tagsHelp" class="form-text text-muted">To enter multiple tags, separate each tag by
+                ','</small>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+    </form>
 </div>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert"></button>
+    {{ message }}
+</div>
+{% endfor %}
+
 {% endblock %}

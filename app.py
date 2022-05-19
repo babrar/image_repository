@@ -1,7 +1,6 @@
-from operator import index
-from flask import Flask, request, render_template, redirect, flash, session
-from db import db_init, db
-from models.image import Img, Tag
+from flask import Flask, request, render_template, redirect, flash
+from db import db_init
+from controllers.display import get_images_from_tag, get_similar_images
 from controllers.upload import upload_images
 import base64
 
@@ -32,17 +31,13 @@ def search():
 def upload():
     if request.method == "GET":
         return render_template("upload.html")
-
     pic = request.files.get("pic")
     tags = request.form.get("inputTags")
-
     # let controller handle upload
-    if (upload_images(pic, tags)):
+    if upload_images(pic, tags):
         flash("Image and tag(s) uploaded")
     else:
         flash("Unable to upload image and tags")
-
-    # session.pop('_flashes', None)
 
     return render_template("upload.html")
 
@@ -54,15 +49,24 @@ def tag():
 
 @app.route("/similar")
 def similar():
-    return "Developing"
+    return render_template("similar.html")
 
 
 @app.route("/display_tag_matches", methods=["POST"])
 def display_tag_matches():
-    pic_list = None
-    return render_template("display.html", pic_list=pic_list)
+    image_list = get_images_from_tag(request.form.get("inputTags"))
+    base64img_list = []
+    for img in image_list:
+        base64img = base64.b64encode(img).decode()
+        base64img_list.append(base64img)
+    return render_template("display.html", image_list=base64img_list)
 
 
 @app.route("/display_similar", methods=["POST"])
 def display_similar():
-    return "Developing"
+    image_list = get_similar_images(request.files.get("pic"))
+    base64img_list = []
+    for img in image_list:
+        base64img = base64.b64encode(img).decode()
+        base64img_list.append(base64img)
+    return render_template("display.html", image_list=base64img_list)
