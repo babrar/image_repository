@@ -5,7 +5,7 @@ from .utils import hamming_distance
 from .utils import image_hash
 
 # distances lesser than threshold indicates similarity between two images
-SIMILARITY_DISTANCE_THRESHOLD = 50
+SIMILARITY_DISTANCE_THRESHOLD = 25
 
 
 def get_images_from_tag(tag):
@@ -24,8 +24,8 @@ def get_images_from_tag(tag):
         images.img  AS pic,
         images.name AS image_name,
         tags.name AS tag_name,
-        image_tags.image_id 
-    FROM tags 
+        image_tags.image_id
+    FROM tags
     INNER JOIN image_tags ON tags.id = image_tags.tag_id
     INNER JOIN images ON image_tags.image_id = images.id
     WHERE tag_name = "{tag}"

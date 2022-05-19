@@ -65,6 +65,9 @@ def display_tag_matches():
 @app.route("/display_similar", methods=["POST"])
 def display_similar():
     image_list = get_similar_images(request.files.get("pic"))
+    if not image_list:
+        flash("No similar images found :(")
+        return render_template("similar.html")
     base64img_list = []
     for img in image_list:
         base64img = base64.b64encode(img).decode()

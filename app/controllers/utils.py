@@ -5,7 +5,8 @@ import re
 
 
 def image_hash(image):
-    """Perform wavelet hashing of given image.
+    """Perform wavelet hashing of given image. Two similar images
+    should produce similar hashes.
     Note:
     The output hash is a 64 bit unsigned integer.
     SQLite can only store upto 64 bit signed integers.
@@ -29,7 +30,8 @@ def tokenize(s):
     Return:
         list[str] - tokenized list of words
     """
-    # transform _ and - to whitespace since they usually delimit two separate words
+    # transform _ and - to whitespace
+    # since they usually delimit two separate words
     res = s.replace("-", " ").replace("_", " ")
     # remove any punctuation marks
     res = re.sub("[^\w\s]", "", res)
@@ -41,7 +43,7 @@ def remove_empty_tags(tag_list):
 
 
 def hamming_distance(x, y):
-    """
+    """Hamming distance alg to determine similarity between two hashes
     :type x: int
     :type y: int
     :rtype: int
