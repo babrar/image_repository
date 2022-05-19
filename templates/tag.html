@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2 style="text-align:center;padding-bottom:1em;"> Search by tags 🏷️ </h2>
+<div class="container">
+    <div class="row-1">
+        <form action="display">
+            <div class="form-group">
+                <label for="inputTags">Tags:</label>
+                <input type="text" class="form-control" id="inputTags" aria-describedby="tagsHelp"
+                    placeholder="Enter tag to search by 🔎">
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

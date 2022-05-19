@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2 style="text-align:center;padding-bottom:1em;"> Search 🔎</h2>
+<div class="container">
+    <div class="row-1">
+        <div class="col text-center">
+            <a href="{{url_for('tag')}}" class="btn btn-primary btn-lg">Search by tags 🏷️</a>
+            <a href="{{url_for('similar')}}" class="btn btn-primary btn-lg">Find similar images 🧠</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
