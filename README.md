@@ -24,7 +24,8 @@ Then visit `http://localhost:5000/` on your browser to test it out.
 
 ## What's cool about it?
 
-Searching images by similarity was an open-ended design choice. I chose **not** to use ML libraries due to added complexity. Rather, I computed [perceptual image hashes](https://en.wikipedia.org/wiki/Perceptual_hashing) to compare image similarity. It's not perfect, but it's simple and performant.
+1. Searching images by similarity was an open-ended design choice. I chose **not** to use ML libraries due to added complexity. Rather, I computed [perceptual image hashes](https://en.wikipedia.org/wiki/Perceptual_hashing) to compare image similarity. It's not perfect, but it's simple and performant.
+2. I tried to extract tags both from the user input and the filename. That should allow for more accurate tag searching.
 
 ## How does it work?
 
